@@ -12,16 +12,17 @@ sudo apt-get firefox
 pip3 install -r requirements.txt
 ```
 
-`LunchBot` expects the following variables to be available in the environment
-where it is run:
+# Running
+
+`LunchBot` expects the following environmental variables to be available when it
+is run:
 ```bash
 GOOGLE_API_KEY
 SLACK_TOKEN
+SLACK_CHANNEL
 DOORDASH_USERNAME
 DOORDASH_PASSWORD
 ```
-
-# Running
 
 To run `LunchBot`, simply run
 ```bash
