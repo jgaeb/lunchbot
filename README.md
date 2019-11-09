@@ -1,5 +1,7 @@
 LunchBot
 ========
+<img src="LunchBot.jpg" alt="LunchBot icon" style="width: 500px;">
+
 `LunchBot` makes ordering lunch easy and fair(-ish).
 
 # Installation
