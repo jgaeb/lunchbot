@@ -9,7 +9,7 @@ from .dd import (
 )
 
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1pJ8NdaQ8SMGVoDWx6SGKMhonkFY7s6wyYjgi-w6DEsE/edit?usp=sharing"
-ICON_URL = ""
+ICON_URL = "https://raw.githubusercontent.com/jg43b/lunchbot/master/LunchBot.jpg"
 
 class Lunchbot(WebClient):
     def __init__(self):
