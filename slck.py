@@ -10,11 +10,13 @@ from .dd import (
 
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1pJ8NdaQ8SMGVoDWx6SGKMhonkFY7s6wyYjgi-w6DEsE/edit?usp=sharing"
 ICON_URL = "https://raw.githubusercontent.com/jg43b/lunchbot/master/LunchBot.jpg"
+SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
+SLACK_CHANNEL = os.environ.get("SLACK_CHANNEL")
 
 class LunchBot(WebClient):
     def __init__(self):
-        super().__init__(token=os.environ.get("SLACK_TOKEN"))
-        self.channel = "WD8PPA17Z"
+        super().__init__(token=SLACK_TOKEN)
+        self.channel = SLACK_CHANNEL
         self.dictator = get_current_dictator()
         self.order = DoorDashOrder()
         if not self.dictator:
