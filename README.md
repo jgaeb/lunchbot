@@ -6,11 +6,11 @@ LunchBot
 
 # Installation
 
-To install `LunchBot` (on Linux) run the following commands in the `lunchbot`
+To install `LunchBot` (on Mac) run the following commands in the `lunchbot`
 directory:
 ```bash
-sudo apt-get geckodriver
-sudo apt-get firefox
+brew install geckodriver
+brew install firefox
 pip3 install -r requirements.txt
 ```
 
