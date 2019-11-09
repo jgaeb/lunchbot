@@ -4,11 +4,14 @@ from time import sleep
 
 from selenium.webdriver import Firefox
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.firefox.options import Options
 import requests
 
 class DoorDashOrder(Firefox):
     def __init__(self):
-        super().__init__()
+        options = Options()
+        options.headless = True
+        super().__init__(options=options)
         self.logged_in = False
         self.order_url = None
         # NOTE: Wait up to one minute for DOM elements to load.

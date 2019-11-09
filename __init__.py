@@ -11,15 +11,15 @@ from .dd import (
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1pJ8NdaQ8SMGVoDWx6SGKMhonkFY7s6wyYjgi-w6DEsE/edit?usp=sharing"
 ICON_URL = "https://raw.githubusercontent.com/jg43b/lunchbot/master/LunchBot.jpg"
 
-class Lunchbot(WebClient):
+class LunchBot(WebClient):
     def __init__(self):
         super().__init__(token=os.environ.get("SLACK_TOKEN"))
         self.channel = "WD8PPA17Z"
         self.dictator = get_current_dictator()
-        if not self.dictator
-            self.send_order_message = self._no_lunch()
-            return
         self.order = DoorDashOrder()
+        if not self.dictator:
+            self.send_order_message = self._no_lunch
+            return
         try:
             self.order.login(
                     username = os.environ.get("DOORDASH_USERNAME"),
@@ -32,7 +32,8 @@ class Lunchbot(WebClient):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.order.close()
+        if self.order:
+            self.order.close()
 
     def _login_failed(self):
         self.chat_postMessage(
@@ -53,6 +54,7 @@ class Lunchbot(WebClient):
                     " there's no lunch this week. See you next week!"
                 ),
                 icon_url = ICON_URL
+        )
 
     def _get_order_urls(self, day):
         text = [f"*{day.title()}*"]
