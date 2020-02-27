@@ -31,7 +31,7 @@ class Dictator():
     def __init__(self, week, name, **kwargs):
         self.name = name
         self.week = date.fromordinal(week + DATE_OFFSET)
-        for key in ["monday", "monday_vegan", "thursday", "thursday_vegan"]:
+        for key in ["monday", "thursday"]:
             if key in kwargs:
                 setattr(self, key, extract_url(kwargs[key]) if kwargs[key] else
                         None)

@@ -60,21 +60,19 @@ class LunchBot(WebClient):
 
     def _get_order_urls(self, day):
         text = [f"*{day.title()}*"]
-        notes = {False: "", True: " for a vegan-friendly option"}
         urls = [
-            getattr(self.dictator, f"{day}{suffix}")
-            for suffix in ["", "_vegan"]
+            getattr(self.dictator, day)
         ]
-        for url, vegan in zip(urls, [False, True]):
+        for url in urls:
             try:
                 if url:
                     rest_url = url
                 else:
-                    rest_url = self.dictator.get_random_rest(vegan=vegan) 
+                    rest_url = self.dictator.get_random_rest() 
                 order_url, rest_name = self.order.group_order(rest_url)
                 message = (
                         f"Click <{order_url} | here> to place your order for lunch"
-                        f" on {day.title()} from {rest_name}{notes[vegan]}."
+                        f" on {day.title()} from {rest_name}."
                 )
                 if not url:
                     message += (
@@ -83,7 +81,7 @@ class LunchBot(WebClient):
                     )
             except (NavigationError, GroupOrderFailedError):
                 message = (
-                        f"I tried to start a group order{notes[vegan]}, but I wasn't"
+                        f"I tried to start a group order, but I wasn't"
                         f" able to. Maybe there was a problem with the link?"
                         f" (It's ` {rest_url} `.)"
                 )
